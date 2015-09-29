@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "./dest/scripts",
+        "sourceMap": false,
+        "target": "es5"
+    },
+    "filesGlob": [
+        "./src/scripts/**/*.ts"
+    ],
+    "compileOnSave": true,
+    "files": [
+        "./src/scripts/app/app.ts",
+        "./src/scripts/domain/ability.ts",
+        "./src/scripts/domain/ability_option.ts",
+        "./src/scripts/domain/ability_repository.ts",
+        "./src/scripts/domain/brand.ts",
+        "./src/scripts/domain/gear.ts",
+        "./src/scripts/domain/gear_combination.ts",
+        "./src/scripts/domain/gear_combinations_creator.ts",
+        "./src/scripts/domain/gear_recommender.ts",
+        "./src/scripts/domain/gear_repository.ts",
+        "./src/scripts/domain/gear_type.ts",
+        "./src/scripts/domain/option.ts",
+        "./src/scripts/domain/recommend_option.ts",
+        "./src/scripts/domain/recommend_option_repository.ts",
+        "./src/scripts/domain/recommend_result.ts",
+        "./src/scripts/infra/ability_repository.ts",
+        "./src/scripts/infra/all_gears.ts",
+        "./src/scripts/infra/gear_repository.ts",
+        "./src/scripts/infra/recommend_option_repository.ts",
+        "./src/scripts/infra/typings/bundle.d.ts",
+        "./src/scripts/infra/typings/jquery/jquery.d.ts",
+        "./src/scripts/view/recommend_option_view.ts",
+        "./src/scripts/view/recommend_result_view.ts"
+    ]
+}

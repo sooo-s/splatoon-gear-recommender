@@ -1,0 +1,143 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./dest/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./dest/libs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="./dest/styles/app.css">
+</head>
+<body>
+<div class="container">
+<h1>ギアをおすすめしてくれるやつ</h1>
+<form id="recommend-option" class="form-inline" action="#">
+    <fieldset class="form-group">
+        <legend>サブギア換算で欲しい数を指定します。メインギア = 4, サブギア３つ = 3。メインギアに２つ欲しい場合は 4 x 2 = 8を指定してください。</legend>
+        <div class="ability-options">
+            <script id="ability-option-template" type="text/incremental-dom-template">
+                <% data.forEach(function(a, i) { %>
+                <div class="ability" class="ability" data-ability-id="<%- a.id %>">
+                    <div class="image-container pull-left">
+                        <img class="ability-image" src="./dest/images/abilities/<%- a.id %>.png"/>
+                    </div>
+                    <div class="setting">
+                        <div class="ability-name"><%- a.name %></div>
+                        <div class="options">
+                            <select class="num">
+                            <% a.nums.forEach(function(s, i) { %>
+                                <% if(s.selected){%>
+                                    <option value="<%- s.value %>" selected><%- s.label %></option>
+                                <% }else{ %>
+                                    <option value="<%- s.value %>"><%- s.label %></option>
+                                <% } %>
+                            <% }); %>
+                            </select>
+                            <% if(a.isRequired){ %>
+                                <label>必須<input class="is-required" type="checkbox" checked="checked"></label>
+                            <% }else{ %>
+                                <label>必須<input class="is-required" type="checkbox"></label>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+          </script>
+        </div>
+    </fieldset>
+    <input class="btn-submit btn btn-primary" type="submit" value="おすすめを表示する">
+</form>
+
+<div id="recommend-result">
+    <div class="result-container"></div>
+</div>
+    <script id="recomment-result-row-template" type="text/incremental-dom-template">
+        <% if(data.error === "no-option") { %>
+        <div class="error-message no-option">条件を１つ以上入力して下さい</div>
+        <% } else if(data.result.length === 0){ %>
+        <div class="error-message no-result">条件に合うギアの組み合わせが見つかりませんでした。</div>
+        <% } else { %>
+        <table class="has-result table table-condensed">
+            <caption>おすすめ結果</caption>
+            <thead>
+                <tr>
+                    <th>スコア</th>
+                    <th>画像</th>
+                    <th>名前</th>
+                    <th>ギアパワー</th>
+                    <th>つきやすいギアパワー</th>
+                    <th>つきにくいギアパワー</th>
+                </tr>
+            </thead>
+            <tbody class="result-rows">
+                    <% data.result.forEach(function(r, i) { %>
+                        <tr class="recommend-result-row">
+                            <td rowspan=3><%- r.score %></td>
+                            <td><img src="./dest/images/gears/<%- r.headGear.name %>.png"/></td>
+                            <td><%- r.headGear.name %></td>
+                            <td><img src="./dest/images/abilities/<%- r.headGear.mainAbilityId %>.png"/></td>
+                            <td>
+                                <% if(r.headGear.commonAbilityId) { %>
+                                    <img src="./dest/images/abilities/<%- r.headGear.commonAbilityId %>.png"/>
+                                <% } else { %>
+                                    <span>なし</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(r.headGear.uncommonAbilityId) { %>
+                                    <img src="./dest/images/abilities/<%- r.headGear.uncommonAbilityId %>.png"/>
+                                <% } else { %>
+                                    <span>なし</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="./dest/images/gears/<%- r.clothing.name %>.png"/></td>
+                            <td><%- r.clothing.name %></td>
+                            <td><img src="./dest/images/abilities/<%- r.clothing.mainAbilityId %>.png"/></td>
+                            <td>
+                                <% if(r.clothing.commonAbilityId) { %>
+                                    <img src="./dest/images/abilities/<%- r.clothing.commonAbilityId %>.png"/>
+                                <% } else { %>
+                                    <span>なし</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(r.clothing.uncommonAbilityId) {%>
+                                    <img src="./dest/images/abilities/<%- r.clothing.uncommonAbilityId %>.png"/>
+                                <% } else { %>
+                                    <span>なし</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="./dest/images/gears/<%- r.shoe.name %>.png"/></td>
+                            <td><%- r.shoe.name %></td>
+                            <td><img src="./dest/images/abilities/<%- r.shoe.mainAbilityId %>.png"/></td>
+                            <td>
+                                <% if(r.shoe.commonAbilityId) {%>
+                                    <img src="./dest/images/abilities/<%- r.shoe.commonAbilityId %>.png"/>
+                                <% } else { %>
+                                    <span>なし</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(r.shoe.uncommonAbilityId) {%>
+                                    <img src="./dest/images/abilities/<%- r.shoe.uncommonAbilityId %>.png"/>
+                                <% } else { %>
+                                    <span>なし</span>
+                                <% } %>
+                            </td>
+                        </tr>
+
+                        </td>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } %>
+    </script>
+
+<script src="./dest/libs/incremental-dom/incremental-dom.js"></script>
+<script src="./dest/libs/itemplate/itemplate.min.js"></script>
+<script src="./dest/scripts/app/init.js"></script>
+</div>
+</body>
+</html>
