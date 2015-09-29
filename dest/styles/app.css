@@ -1,0 +1,68 @@
+.ability-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+}
+.ability{
+    border: 2px solid #333;
+    position: static;
+    background: #333;
+    padding: 1rem;
+    margin: 0.25rem;
+}
+.ability .image-container {
+    display: inline-block;
+}
+.ability-image {
+    width: 5rem;
+    height: auto;
+    display: inline-block;
+}
+.ability .setting {
+    width: 19rem;
+    margin-left: 1rem;
+    display: inline-block;
+    text-align: right;
+}
+.ability-name {
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    color: white;
+}
+.ability .options{
+    width: 100%;
+    color: white;
+}
+.ability label{
+    margin-left: 1rem;
+}
+.ability input {
+    margin-left: 0.5rem;
+}
+select.num {
+    color: #333;
+}
+#recommend-option .btn-submit {
+    display: block;
+    margin: auto;
+}
+#recommend-result img {
+    width: 50px;
+    height: auto;
+}
+
+#recommend-result {
+    width: 80%;
+    margin: 0 auto 0 auto;
+    border: 1px solid #888;
+}
+
+.error-message {
+    width: 100%;
+    margin: 2rem auto 2rem auto;
+    background: #333;
+    padding: 1rem;
+    color: white;
+    text-align: center;;
+}
